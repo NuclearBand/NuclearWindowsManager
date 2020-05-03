@@ -106,6 +106,12 @@ namespace NuclearBand
         {
             OnStartShow?.Invoke(this);
 
+            if (!WithInputBlockForBackground && inputBlock != null)
+            {
+                Destroy(inputBlock);
+                inputBlock = null;
+            }
+
             if (WithInputBlockForBackground && inputBlock == null)
             {
                 inputBlock = Instantiate(WindowsManager.InputBlockPrefab, transform);
