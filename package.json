@@ -1,0 +1,28 @@
+{
+  "name": "com.nuclearband.windowsmanager",
+  "displayName": "Windows Manager",
+  "version": "0.1.0",
+  "description": "Windows Manager utility",
+  "author": {
+    "name": "Tr0sT",
+    "url": "https://github.com/Tr0sT"
+  },
+  "keywords": [
+    "tools",
+    "UI",
+    "utilities",
+    "library",
+    "windowsmanager",
+    "nuclearband"
+  ],
+  "repository": "https://github.com/Tr0sT/UnityWindowsManager.git",
+  "license": "MIT",
+  "samples": [
+    {
+      "displayName": "Four examples",
+      "description": "Windows manipulations, animations, Orientation control and Windows chains",
+      "path": "Samples~/Sample"
+    }
+  ],
+  "type": "library"
+}
