@@ -15,7 +15,7 @@
     "windowsmanager",
     "nuclearband"
   ],
-  "repository": "https://github.com/Tr0sT/UnityWindowsManager.git",
+  "repository": "https://github.com/Tr0sT/UnityWindowsManager.git#upm",
   "license": "MIT",
   "samples": [
     {
