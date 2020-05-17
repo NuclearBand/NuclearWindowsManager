@@ -3,7 +3,9 @@
   "plugins": [
     ["@semantic-release/commit-analyzer", { "preset": "angular" }],
     "@semantic-release/release-notes-generator",
-    ["@semantic-release/changelog", { "preset": "angular" }],
+    ["@semantic-release/changelog", {
+      "changelogFile": "Assets/com.nuclearband.windowsmanager/CHANGELOG.md"
+    }],
     ["@semantic-release/npm", { "npmPublish": false, "pkgRoot": "Assets/com.nuclearband.windowsmanager" }],
     ["@semantic-release/git", {
       "assets": ["Assets/com.nuclearband.windowsmanager/package.json", "Assets/com.nuclearband.windowsmanager/CHANGELOG.md"],
