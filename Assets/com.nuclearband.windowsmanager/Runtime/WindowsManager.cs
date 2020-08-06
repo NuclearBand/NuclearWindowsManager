@@ -6,12 +6,14 @@ namespace NuclearBand
 {
     public static class WindowsManager
     {
-        class WindowBuildData
+        private class WindowBuildData
         {
-            public readonly string WindowPath;
-            public string Suffix;
-            public readonly Action<Window> SetupWindow;
-            public WindowBuildData(string windowPath, string suffix, Action<Window> setupWindow)
+            public string WindowPath { get; }
+            public string Suffix { get; set; }
+
+            public Action<Window>? SetupWindow { get; }
+
+            public WindowBuildData(string windowPath, string suffix, Action<Window>? setupWindow)
             {
                 this.WindowPath = windowPath;
                 this.Suffix = suffix;
@@ -19,40 +21,36 @@ namespace NuclearBand
             }
         }
 
-        public static bool InputBlocked { get; set; }
-        public static GameObject InputBlockPrefab { get; private set; }
+        public static bool InputBlocked { get; private set; }
+        public static GameObject InputBlockPrefab { get; private set; } = null!;
 
-        static Dictionary<string, Func<bool>> suffixesWithPredicates;
-        static Transform root;
+        private static Dictionary<string, Func<bool>> suffixesWithPredicates = new Dictionary<string, Func<bool>>();
+        private static Transform root = null!;
 
-        static GameObject inputBlock;
-        static int numBlocks;
-        static List<WindowReference> windows;
-        static List<WindowBuildData> windowBuildDataList;
-        static Dictionary<string, GameObject> loadedWindowPrefabs;
-        static Dictionary<string, List<Window>> invisibleWindows;
+        private static GameObject inputBlock = null!;
+        private static int numBlocks;
+        private static readonly List<WindowReference> windows = new List<WindowReference>();
+        private static readonly List<WindowBuildData> windowBuildDataList = new List<WindowBuildData>();
+        private static readonly Dictionary<string, GameObject> loadedWindowPrefabs = new Dictionary<string, GameObject>();
+        private static readonly Dictionary<string, List<Window>> invisibleWindows = new Dictionary<string, List<Window>>();
 
         public static void Init(WindowsManagerSettings settings)
         {
             suffixesWithPredicates = settings.SuffixesWithPredicates;
-            windows = new List<WindowReference>();
-            windowBuildDataList = new List<WindowBuildData>();
-            loadedWindowPrefabs = new Dictionary<string, GameObject>();
-            invisibleWindows = new Dictionary<string, List<Window>>();
 
-            InputBlockPrefab = Resources.Load<GameObject>(settings.InputBlockPath);
-            if (InputBlockPrefab == null)
-                Debug.LogError("WindowsManager: Wrong path to InputBlock");
+            InputBlockPrefab = Resources.Load<GameObject>(settings.InputBlockPath) ??
+                                   throw new ArgumentException("WindowsManager: Wrong path to InputBlock");
+
             InputBlocked = false;
-            var rootPrefab = Resources.Load<GameObject>(settings.RootPath);
-            if (rootPrefab == null)
-                Debug.LogError("WindowsManager: Wrong path to root");
+            var rootPrefab = Resources.Load<GameObject>(settings.RootPath) ??
+                             throw new ArgumentException("WindowsManager: Wrong path to root");
+
             root = GameObject.Instantiate(rootPrefab).transform;
-            root.name = root.name.Replace("(Clone)", "");
+            root.name = root.name.Replace("(Clone)", string.Empty);
             GameObject.DontDestroyOnLoad(root.gameObject);
         }
 
-        public static WindowReference CreateWindow(string windowPath, Action<Window> setupWindow = null)
+        public static WindowReference CreateWindow(string windowPath, Action<Window>? setupWindow = null)
         {
             var suffix = FindSuffixFor(windowPath);
             var window = InstantiateWindow(windowPath + suffix);
@@ -72,7 +70,7 @@ namespace NuclearBand
 
         private static Window InstantiateWindow(string fullWindowPath)
         {
-            Window window = null;
+            Window window;
             if (invisibleWindows.ContainsKey(fullWindowPath))
             {
                 var windowList = invisibleWindows[fullWindowPath];
@@ -82,19 +80,16 @@ namespace NuclearBand
                     window.gameObject.SetActive(true);
                     window.transform.SetAsLastSibling();
                     windowList.RemoveAt(windowList.Count - 1);
+                    return window;
                 }
             }
 
-            if (window == null)
-            {
-                var windowPrefab = GetWindowPrefab(fullWindowPath);
-                if (windowPrefab == null)
-                    return null;
-                window = GameObject.Instantiate(windowPrefab, root).GetComponent<Window>();
-                if (window == null)
-                    Debug.LogError("WindowsManager: no window script on window " + fullWindowPath);
-                window.name = window.name.Replace("(Clone)", "");
-            }
+            var windowPrefab = GetWindowPrefab(fullWindowPath);
+
+            window = GameObject.Instantiate(windowPrefab, root).GetComponent<Window>() ??
+                     throw new ArgumentException($"WindowsManager: no Window script on window {fullWindowPath}");
+
+            window.name = window.name.Replace("(Clone)", string.Empty);
 
             return window;
         }
@@ -166,7 +161,7 @@ namespace NuclearBand
             if (inputBlock == null)
             {
                 inputBlock = GameObject.Instantiate(InputBlockPrefab, root);
-                inputBlock.name = inputBlock.name.Replace("(Clone)", "");
+                inputBlock.name = inputBlock.name.Replace("(Clone)", string.Empty);
             }
 
             inputBlock.transform.SetAsLastSibling();
@@ -199,32 +194,37 @@ namespace NuclearBand
                 if (invisibleWindows.ContainsKey(windowPath + suffix))
                     return suffix;
 
-                var windowPrefab = GetWindowPrefab(windowPath + suffix);
-                if (windowPrefab != null)
+                if (CheckWindowPrefabExistence(windowPath + suffix))
                     return suffix;
             }
 
-            return "";
+            return string.Empty;
         }
 
-        static GameObject GetWindowPrefab(string path)
+        private static bool CheckWindowPrefabExistence(string path)
+        {
+            if (loadedWindowPrefabs.ContainsKey(path))
+                return true;
+            return Resources.Load<GameObject>(path) != null;
+        }
+
+        private static GameObject GetWindowPrefab(string path)
         {
             GameObject windowPrefab;
             if (loadedWindowPrefabs.ContainsKey(path))
-            {
                 windowPrefab = loadedWindowPrefabs[path];
-            }
             else
             {
-                windowPrefab = Resources.Load<GameObject>(path);
-                if (windowPrefab != null)
-                    loadedWindowPrefabs.Add(path, windowPrefab);
+                windowPrefab = Resources.Load<GameObject>(path) ??
+                               throw new ArgumentException($"Can't load prefab with such path {path}");
+
+                loadedWindowPrefabs.Add(path, windowPrefab);
             }
 
             return windowPrefab;
         }
 
-        static void WindowOnHidden(Window window)
+        private static void WindowOnHidden(Window window)
         {
             window.OnHidden -= WindowOnHidden;
             window.OnCloseForRebuild -= WindowOnCloseForRebuild;
@@ -248,7 +248,7 @@ namespace NuclearBand
             }
         }
 
-        static void WindowOnCloseForRebuild(Window window)
+        private static void WindowOnCloseForRebuild(Window window)
         {
             window.OnCloseForRebuild -= WindowOnCloseForRebuild;
 

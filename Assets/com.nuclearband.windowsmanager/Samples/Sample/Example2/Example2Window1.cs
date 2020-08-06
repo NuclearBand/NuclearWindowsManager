@@ -6,7 +6,7 @@
 
         public new void OpenTestWindow1Click()
         {
-            WindowsManager.CreateWindow(Example2Window1.Path);
+            WindowsManager.CreateWindow(Path);
         }
 
         public new void OpenTestWindow2Click()

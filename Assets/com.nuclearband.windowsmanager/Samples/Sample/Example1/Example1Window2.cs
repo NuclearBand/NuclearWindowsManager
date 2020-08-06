@@ -6,8 +6,8 @@ namespace NuclearBand
     {
         public const string Path = "NuclearBand/Examples_WindowsManager/Example1/TestWindow2";
 
-        protected string title;
-        public Text text;
+        protected string title = null!;
+        public Text text = null!;
         public override void Init()
         {
             base.Init();
@@ -16,7 +16,7 @@ namespace NuclearBand
 
         public static WindowReference CreateWindow(string path, string title)
         {
-            return WindowsManager.CreateWindow(path, window => (window as Example1Window2).title = title);
+            return WindowsManager.CreateWindow(path, window => (window as Example1Window2)!.title = title);
         }
     }
 }

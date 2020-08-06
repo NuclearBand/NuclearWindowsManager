@@ -6,7 +6,7 @@ namespace NuclearBand
     {
         public const string Path = "NuclearBand/Examples_WindowsManager/Example1/TestWindow1";
 
-        public InputField inputField;
+        public InputField inputField = null!;
 
         public void OpenTestWindow1Click()
         {

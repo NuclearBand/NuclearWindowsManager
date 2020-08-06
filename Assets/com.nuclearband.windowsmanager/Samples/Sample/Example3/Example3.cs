@@ -19,7 +19,7 @@ namespace NuclearBand
                 }
             });
             OrientationEventManager.Instance.OnOrientationChanged += WindowsManager.RefreshLayout;
-            var window = WindowsManager.CreateWindow(Example3Window1.Path).Window;
+            WindowsManager.CreateWindow(Example3Window1.Path);
         }
     }
 }
