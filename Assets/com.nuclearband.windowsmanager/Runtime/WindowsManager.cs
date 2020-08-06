@@ -87,7 +87,7 @@ namespace NuclearBand
             var windowPrefab = GetWindowPrefab(fullWindowPath);
 
             window = GameObject.Instantiate(windowPrefab, root).GetComponent<Window>() ??
-                     throw new ArgumentException($"WindowsManager: no Window script on window {fullWindowPath}");
+                     throw new ArgumentException($"WindowsManager: missing Window script on window {fullWindowPath}");
 
             window.name = window.name.Replace("(Clone)", string.Empty);
 
