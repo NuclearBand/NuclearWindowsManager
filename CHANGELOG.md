@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/NuclearBand/UnityWindowsManager/compare/v1.0.3...v1.1.0) (2020-08-06)
+
+
+### Features
+
+* c# 8 nullable ([b9227f9](https://github.com/NuclearBand/UnityWindowsManager/commit/b9227f9bf34b2cb48c46549bb046d8d20db8099a))
+
 ## [1.0.3](https://github.com/Tr0sT/UnityWindowsManager/compare/v1.0.2...v1.0.3) (2020-05-23)
 
 
