@@ -5,22 +5,22 @@ namespace NuclearBand
     public class Example3Window2 : Example2Window2
     {
         public new const string Path = "NuclearBand/Examples_WindowsManager/Example3/TestWindow2";
-        public Text rebuildText;
-        int rebuildNum;
+        public Text rebuildText = null!;
+        private int rebuildNum;
 
         class Example3Window2_WindowTransientData : WindowTransientData
         {
-            readonly int rebuildNum;
+            private readonly int rebuildNum;
 
             public Example3Window2_WindowTransientData(Window window) : base(window)
             {
-                rebuildNum = (window as Example3Window2).rebuildNum;
+                rebuildNum = (window as Example3Window2)!.rebuildNum;
             }
 
             public override void RestoreWindow(Window window)
             {
                 base.RestoreWindow(window);
-                (window as Example3Window2).rebuildNum = rebuildNum;
+                (window as Example3Window2)!.rebuildNum = rebuildNum;
             }
         }
 

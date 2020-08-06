@@ -8,7 +8,7 @@ namespace NuclearBand
     public class Example4Window2 : Window
     {
         public const string Path = "NuclearBand/Examples_WindowsManager/Example4/TestWindow2";
-        public Image background;
+        public Image background = null!;
         float size;
 
 
@@ -21,12 +21,12 @@ namespace NuclearBand
 
         public static Action<Window> SetupWindow(float size)
         {
-            return window => (window as Example4Window2).size = size;
+            return window => (window as Example4Window2)!.size = size;
         }
 
         public void OpenTestWindow1Click()
         {
-            var w = WindowsManager.CreateWindow(Example4Window2.Path, Example4Window2.SetupWindow(size * 0.9f)).Window;
+            var w = WindowsManager.CreateWindow(Path, SetupWindow(size * 0.9f)).Window;
             w.OnStartHide += window => Close();
         }
     }

@@ -6,7 +6,7 @@ namespace NuclearBand
     public class Example2Window2 : Example1Window2
     {
         public new const string Path = "NuclearBand/Examples_WindowsManager/Example2/TestWindow2";
-        public CanvasGroup canvasGroup;
+        public CanvasGroup canvasGroup = null!;
 
         protected override void StartShowAnimation()
         {

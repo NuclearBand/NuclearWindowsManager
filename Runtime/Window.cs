@@ -12,13 +12,13 @@ namespace NuclearBand
 
         public class WindowTransientData
         {
-            public event Action<Window> OnStartShow;
-            public event Action<Window> OnShown;
-            public event Action<Window> OnStartHide;
-            public event Action<Window> OnHidden;
-            public event Action<Window> OnInitAfterRebuild;
+            public event Action<Window>? OnStartShow;
+            public event Action<Window>? OnShown;
+            public event Action<Window>? OnStartHide;
+            public event Action<Window>? OnHidden;
+            public event Action<Window>? OnInitAfterRebuild;
 
-            public WindowState WindowState;
+            public readonly WindowState WindowState;
 
 
             public WindowTransientData(Window window)
@@ -53,7 +53,7 @@ namespace NuclearBand
             if (WithInputBlockForBackground && inputBlock == null)
             {
                 inputBlock = Instantiate(WindowsManager.InputBlockPrefab, transform);
-                inputBlock.name = inputBlock.name.Replace("(Clone)", "");
+                inputBlock.name = inputBlock.name.Replace("(Clone)", string.Empty);
                 inputBlock.transform.SetAsFirstSibling();
             }
             OnInitAfterRebuild?.Invoke(this);
@@ -79,12 +79,12 @@ namespace NuclearBand
             CloseInternal();
         }
         #endregion
-        public event Action<Window> OnShown;
-        public event Action<Window> OnHidden;
-        public event Action<Window> OnStartShow;
-        public event Action<Window> OnStartHide;
-        public event Action<Window> OnCloseForRebuild;
-        public event Action<Window> OnInitAfterRebuild;
+        public event Action<Window>? OnShown;
+        public event Action<Window>? OnHidden;
+        public event Action<Window>? OnStartShow;
+        public event Action<Window>? OnStartHide;
+        public event Action<Window>? OnCloseForRebuild;
+        public event Action<Window>? OnInitAfterRebuild;
 
 
         public enum WindowState
@@ -100,7 +100,7 @@ namespace NuclearBand
 
         protected WindowState windowState = WindowState.Closed;
 
-        GameObject inputBlock;
+        private GameObject? inputBlock;
 
         public virtual void Init()
         {
@@ -115,7 +115,7 @@ namespace NuclearBand
             if (WithInputBlockForBackground && inputBlock == null)
             {
                 inputBlock = Instantiate(WindowsManager.InputBlockPrefab, transform);
-                inputBlock.name = inputBlock.name.Replace("(Clone)", "");
+                inputBlock.name = inputBlock.name.Replace("(Clone)", string.Empty);
                 inputBlock.transform.SetAsFirstSibling();
             }
         }
@@ -159,7 +159,7 @@ namespace NuclearBand
             CloseInternal();
         }
 
-        void CloseInternal()
+        private void CloseInternal()
         {
             windowState = WindowState.Closed;
             var onClose = OnHidden;

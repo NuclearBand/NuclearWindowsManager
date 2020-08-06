@@ -5,15 +5,15 @@ namespace NuclearBand
 {
     public class OrientationEventManager : MonoBehaviour
     {
-        public static OrientationEventManager Instance { get; private set; }
+        public static OrientationEventManager Instance { get; private set; } = null!;
 
-        enum DeviceScreenOrientation
+        private enum DeviceScreenOrientation
         {
             Landscape,
             Portrait
         }
 
-        public event Action OnOrientationChanged;
+        public event Action? OnOrientationChanged;
         private DeviceScreenOrientation orientation;
 #if UNITY_EDITOR
         private int prevWidth;

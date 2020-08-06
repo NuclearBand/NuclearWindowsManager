@@ -5,8 +5,8 @@ namespace NuclearBand
 {
     public class BackButtonEventManager : MonoBehaviour
     {
-        public event Action OnBackButtonPressed;
-        public static BackButtonEventManager Instance { get; private set; }
+        public event Action? OnBackButtonPressed;
+        public static BackButtonEventManager Instance { get; private set; } = null!;
 
         private void Awake()
         {
