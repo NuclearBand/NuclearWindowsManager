@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/NuclearBand/UnityWindowsManager/compare/v1.1.0...v1.2.0) (2020-08-19)
+
+
+### Features
+
+* c[#8](https://github.com/NuclearBand/UnityWindowsManager/issues/8) and WindowsManager events ([481b161](https://github.com/NuclearBand/UnityWindowsManager/commit/481b1617000df8ae0c520666cf49be182b79eb78))
+
 # [1.1.0](https://github.com/NuclearBand/UnityWindowsManager/compare/v1.0.3...v1.1.0) (2020-08-06)
 
 
