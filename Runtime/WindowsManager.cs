@@ -1,3 +1,4 @@
+#nullable enable
 using UnityEngine;
 using System.Collections.Generic;
 using System;
@@ -21,6 +22,8 @@ namespace NuclearBand
             }
         }
 
+        public static event Action<Window>? OnWindowCreated;
+        public static event Action<Window>? OnWindowClosed;
         public static bool InputBlocked { get; private set; }
         public static GameObject InputBlockPrefab { get; private set; } = null!;
 
@@ -65,6 +68,7 @@ namespace NuclearBand
             window.Init();
 
             window.Show();
+            OnWindowCreated?.Invoke(window);
             return windowReference;
         }
 
@@ -244,6 +248,7 @@ namespace NuclearBand
 
                 windows.RemoveAt(i);
                 windowBuildDataList.RemoveAt(i);
+                OnWindowClosed?.Invoke(window);
                 return;
             }
         }

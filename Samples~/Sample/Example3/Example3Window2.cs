@@ -1,4 +1,5 @@
-﻿using UnityEngine.UI;
+#nullable enable
+using UnityEngine.UI;
 
 namespace NuclearBand
 {

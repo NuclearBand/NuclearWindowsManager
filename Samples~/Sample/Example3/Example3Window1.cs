@@ -1,4 +1,5 @@
-﻿
+#nullable enable
+
 namespace NuclearBand
 {
     public class Example3Window1 : Example2Window1

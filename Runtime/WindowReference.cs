@@ -1,3 +1,4 @@
+#nullable enable
 namespace NuclearBand
 {
     public class WindowReference
