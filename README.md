@@ -8,3 +8,4 @@ You can install via git url by adding this entry in your **manifest.json**
 
 ## Documentation
 - [Documentation](https://github.com/Tr0sT/UnityWindowsManager/blob/master/Assets/com.nuclearband.windowsmanager/Documentation/DOCUMENTATION.md)
+- [Документация](https://github.com/NuclearBand/UnityWindowsManager/blob/master/Assets/com.nuclearband.windowsmanager/Documentation/Documentation.ru.md)
