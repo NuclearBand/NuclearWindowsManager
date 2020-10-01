@@ -6,7 +6,7 @@ Unity 2020.1.4 or later (C# 8)
 ## Installation
 You can install via git url by adding this entry in your **manifest.json**
 ```
-"com.nuclearband.windowsmanager": "https://github.com/Tr0sT/UnityWindowsManager.git#upm"
+"com.nuclearband.windowsmanager": "https://github.com/NuclearBand/UnityWindowsManager.git#upm"
 ```
 
 ## Documentation
