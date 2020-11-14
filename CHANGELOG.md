@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/NuclearBand/UnityWindowsManager/compare/v1.2.0...v1.2.1) (2020-11-14)
+
+
+### Bug Fixes
+
+* package author ([592fd37](https://github.com/NuclearBand/UnityWindowsManager/commit/592fd37a744e575c72113bfbae08fd5665e82f00))
+
 # [1.2.0](https://github.com/NuclearBand/UnityWindowsManager/compare/v1.1.0...v1.2.0) (2020-08-19)
 
 
