@@ -4,8 +4,8 @@
   "version": "1.2.0",
   "description": "Windows Manager utility",
   "author": {
-    "name": "Tr0sT",
-    "url": "https://github.com/Tr0sT"
+    "name": "NuclearBand",
+    "url": "https://github.com/NuclearBand"
   },
   "keywords": [
     "tools",
@@ -15,7 +15,7 @@
     "windowsmanager",
     "nuclearband"
   ],
-  "repository": "https://github.com/Tr0sT/UnityWindowsManager.git#upm",
+  "repository": "https://github.com/NuclearBand/UnityWindowsManager.git#upm",
   "license": "MIT",
   "samples": [
     {
