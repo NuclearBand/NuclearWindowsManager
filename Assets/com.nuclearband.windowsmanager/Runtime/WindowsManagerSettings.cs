@@ -8,6 +8,6 @@ namespace NuclearBand
     {
         public string RootPath = "Root";
         public string InputBlockPath = "InputBlock";
-        public Dictionary<string, Func<bool>> SuffixesWithPredicates = new Dictionary<string, Func<bool>>();
+        public Dictionary<string, Func<bool>> SuffixesWithPredicates = new();
     }
 }
