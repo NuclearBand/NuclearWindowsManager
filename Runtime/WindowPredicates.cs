@@ -11,7 +11,7 @@ namespace NuclearBand
             return Screen.width < Screen.height;
 #endif
 #pragma warning disable CS0162
-            return Screen.orientation == ScreenOrientation.Portrait;
+            return Screen.orientation is ScreenOrientation.Portrait or ScreenOrientation.PortraitUpsideDown;
 #pragma warning restore CS0162
         }
 
@@ -21,7 +21,7 @@ namespace NuclearBand
             return Screen.width >= Screen.height;
 #endif
 #pragma warning disable CS0162
-            return Screen.orientation == ScreenOrientation.Landscape;
+            return Screen.orientation is ScreenOrientation.LandscapeLeft or ScreenOrientation.LandscapeRight;
 #pragma warning restore CS0162
         }
 

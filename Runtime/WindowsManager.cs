@@ -152,6 +152,9 @@ namespace NuclearBand
                     continue;
                 windows.RemoveAt(i);
                 windows.Add(windowReference);
+                var windowsBuildData = windowBuildDataList[i];
+                windowBuildDataList.RemoveAt(i);
+                windowBuildDataList.Add(windowsBuildData);
                 break;
             }
         }
