@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/NuclearBand/UnityWindowsManager/compare/v1.2.1...v1.2.2) (2022-08-21)
+
+
+### Bug Fixes
+
+* BringOnTop bugfix ([bada7b8](https://github.com/NuclearBand/UnityWindowsManager/commit/bada7b86a787533ccb2d1dad5e1d450456c08497))
+
 ## [1.2.1](https://github.com/NuclearBand/UnityWindowsManager/compare/v1.2.0...v1.2.1) (2020-11-14)
 
 
