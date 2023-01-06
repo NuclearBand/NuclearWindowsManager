@@ -1,53 +1,32 @@
 #nullable enable
+using System;
+using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
-namespace NuclearBand
+namespace Nuclear.WindowsManager
 {
-    public class Example3Window2 : Example2Window2
+    public class Example3Window2 : Window
     {
-        public new const string Path = "NuclearBand/Examples_WindowsManager/Example3/TestWindow2";
-        public Text rebuildText = null!;
-        private int rebuildNum;
+        public const string Path = "com.nuclearband.windowsmanager/Examples/Example3/TestWindow2";
 
-        class Example3Window2_WindowTransientData : WindowTransientData
-        {
-            private readonly int rebuildNum;
-
-            public Example3Window2_WindowTransientData(Window window) : base(window)
-            {
-                rebuildNum = (window as Example3Window2)!.rebuildNum;
-            }
-
-            public override void RestoreWindow(Window window)
-            {
-                base.RestoreWindow(window);
-                (window as Example3Window2)!.rebuildNum = rebuildNum;
-            }
-        }
-
-        public override WindowTransientData GetTransientData()
-        {
-            return new Example3Window2_WindowTransientData(this);
-        }
+        [SerializeField] private Image _background = null!;
+        private float _size;
 
         public override void Init()
         {
             base.Init();
-            rebuildNum = 0;
-            DrawRebuildNum();
+            _background.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
+            _background.rectTransform.localScale = Vector3.one * _size;
         }
 
-        public override void InitAfterRebuild(WindowTransientData windowTransientData)
-        {
-            base.InitAfterRebuild(windowTransientData);
-            text.text = title;
-            ++rebuildNum;
-            DrawRebuildNum();
-        }
+        public static Action<Window> SetupWindow(float size) => 
+            window => ((Example3Window2) window)._size = size;
 
-        void DrawRebuildNum()
+        public void OpenTestWindow1Click()
         {
-            rebuildText.text = rebuildNum.ToString();
+            var w = StaticWindowsManager.CreateWindow(Path, SetupWindow(_size * 0.9f));
+            w.OnStartHide += _ => Close();
         }
     }
 }

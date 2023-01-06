@@ -1,19 +1,11 @@
 #nullable enable
-
-namespace NuclearBand
+namespace Nuclear.WindowsManager
 {
-    public class Example3Window1 : Example2Window1
+    public class Example3Window1 : Window
     {
-        public new const string Path = "NuclearBand/Examples_WindowsManager/Example3/TestWindow1";
+        public const string Path = "com.nuclearband.windowsmanager/Examples/Example3/TestWindow1";
 
-        public new void OpenTestWindow1Click()
-        {
-            WindowsManager.CreateWindow(Example3Window1.Path);
-        }
-
-        public new void OpenTestWindow2Click()
-        {
-            Example3Window2.CreateWindow(Example3Window2.Path, inputField.text);
-        }
+        public void OpenTestWindow1Click() => 
+            StaticWindowsManager.CreateWindow(Example3Window2.Path, Example3Window2.SetupWindow(1.0f));
     }
 }

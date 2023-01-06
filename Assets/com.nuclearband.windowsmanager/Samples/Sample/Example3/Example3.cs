@@ -1,26 +1,17 @@
 #nullable enable
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace NuclearBand
+namespace Nuclear.WindowsManager
 {
     public class Example3 : MonoBehaviour
     {
-        void Start()
+        private void Start()
         {
-            var rootPath = "NuclearBand/Examples_WindowsManager/Example1/";
-            WindowsManager.Init(new WindowsManagerSettings()
-            {
-                RootPath = rootPath + "Canvas",
-                InputBlockPath = rootPath + "InputBlocker",
-                SuffixesWithPredicates = new Dictionary<string, Func<bool>>
-                {
-                    {"_p", WindowPredicates.IsPortrait}
-                }
-            });
-            OrientationEventManager.Instance.OnOrientationChanged += WindowsManager.RefreshLayout;
-            WindowsManager.CreateWindow(Example3Window1.Path);
+            const string rootPath = "com.nuclearband.windowsmanager/Examples/Example1/";
+            StaticWindowsManager.Init(new WindowsManagerSettings(rootPath + "Canvas",
+                rootPath + "InputBlocker"
+            ));
+            StaticWindowsManager.CreateWindow(Example3Window1.Path);
         }
     }
 }

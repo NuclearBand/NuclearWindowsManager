@@ -1,23 +1,24 @@
 #nullable enable
+using UnityEngine;
 using UnityEngine.UI;
 
-namespace NuclearBand
+namespace Nuclear.WindowsManager
 {
     public class Example1Window2 : Window
     {
-        public const string Path = "NuclearBand/Examples_WindowsManager/Example1/TestWindow2";
+        public const string Path = "com.nuclearband.windowsmanager/Examples/Example1/TestWindow2";
 
-        protected string title = null!;
-        public Text text = null!;
+        [SerializeField] private Text _text = null!;
+
+        private string _title = null!;
+
         public override void Init()
         {
             base.Init();
-            text.text = title;
+            _text.text = _title;
         }
 
-        public static WindowReference CreateWindow(string path, string title)
-        {
-            return WindowsManager.CreateWindow(path, window => (window as Example1Window2)!.title = title);
-        }
+        public static Window CreateWindow(string path, string title) => 
+            StaticWindowsManager.CreateWindow(path, window => ((Example1Window2)window)._title = title);
     }
 }
