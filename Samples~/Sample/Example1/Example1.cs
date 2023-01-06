@@ -1,19 +1,17 @@
 #nullable enable
 using UnityEngine;
 
-namespace NuclearBand
+namespace Nuclear.WindowsManager
 {
     public class Example1 : MonoBehaviour
     {
-        void Start()
+        private void Awake()
         {
-            var rootPath = "NuclearBand/Examples_WindowsManager/Example1/";
-            WindowsManager.Init(new WindowsManagerSettings()
-            {
-                RootPath = rootPath + "Canvas",
-                InputBlockPath = rootPath + "InputBlocker"
-            });
-            WindowsManager.CreateWindow(Example1Window1.Path);
+            const string rootPath = "com.nuclearband.windowsmanager/Examples/Example1/";
+            StaticWindowsManager.Init(new WindowsManagerSettings(rootPath + "Canvas",
+                 rootPath + "InputBlocker"
+            ));
+            StaticWindowsManager.CreateWindow(Example1Window1.Path);
         }
     }
 }

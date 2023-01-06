@@ -1,18 +1,19 @@
 #nullable enable
-namespace NuclearBand
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace Nuclear.WindowsManager
 {
-    public class Example2Window1 : Example1Window1
+    public class Example2Window1 : Window
     {
-        public new const string Path = "NuclearBand/Examples_WindowsManager/Example2/TestWindow1";
+        public const string Path = "com.nuclearband.windowsmanager/Examples/Example2/TestWindow1";
 
-        public new void OpenTestWindow1Click()
-        {
-            WindowsManager.CreateWindow(Path);
-        }
+        [SerializeField] private InputField _inputField = null!;
 
-        public new void OpenTestWindow2Click()
-        {
-            Example2Window2.CreateWindow(Example2Window2.Path, inputField.text);
-        }
+        public void OpenTestWindow1Click() => 
+            StaticWindowsManager.CreateWindow(Path);
+
+        public void OpenTestWindow2Click() => 
+            Example1Window2.CreateWindow(Example2Window2.Path, _inputField.text);
     }
 }
