@@ -10,7 +10,7 @@ You can install via git url by adding this entry in your **manifest.json**
 ```
 
 ## Documentation (outdated)
-- [Documentation](https://github.com/Tr0sT/NuclearWindowsManager/blob/master/Assets/com.nuclearband.windowsmanager/Documentation/DOCUMENTATION.md)
+- [Documentation](https://github.com/NuclearBand/NuclearWindowsManager/blob/master/Assets/com.nuclearband.windowsmanager/Documentation/Documentation.en.md)
 - [Документация](https://github.com/NuclearBand/NuclearWindowsManager/blob/master/Assets/com.nuclearband.windowsmanager/Documentation/Documentation.ru.md)
 
 ## Contributing
