@@ -10,8 +10,8 @@ namespace Nuclear.WindowsManager
 {
     public class WindowsManager : IWindowsManager
     {
-        public event Action<Window> OnWindowCreated = delegate { };
-        public event Action<Window> OnWindowClosed = delegate { };
+        public event Action<Window>? OnWindowCreated;
+        public event Action<Window>? OnWindowClosed;
 
         private readonly ReadOnlyDictionary<string, Func<bool>> _suffixesWithPredicates;
         private readonly Transform _root ;
@@ -37,6 +37,14 @@ namespace Nuclear.WindowsManager
             backButtonEventManager.OnBackButtonPressed += OnBackButtonPressedCallback;
             Object.DontDestroyOnLoad(_root.gameObject);
         }
+        
+        public void Dispose()
+        {
+            if (_root != null)
+            {
+                Object.Destroy(_root);
+            }
+        }
 
         Window IWindowsManager.CreateWindow(string path, Action<Window>? setupWindow)
         {
@@ -50,7 +58,7 @@ namespace Nuclear.WindowsManager
             window.Init();
             
             window.Show();
-            OnWindowCreated(window);
+            OnWindowCreated?.Invoke(window);
             return window;
         }
         
@@ -84,9 +92,8 @@ namespace Nuclear.WindowsManager
         {
             Window window;
             var windowName = fullWindowPath.Split('/')[^1];
-            if (_invisibleWindows.ContainsKey(windowName))
+            if (_invisibleWindows.TryGetValue(windowName, out var windowList))
             {
-                var windowList = _invisibleWindows[windowName];
                 if (windowList.Count != 0)
                 {
                     window = windowList[^1];
@@ -147,8 +154,8 @@ namespace Nuclear.WindowsManager
         private GameObject GetWindowPrefab(string path)
         {
             GameObject windowPrefab;
-            if (_loadedWindowPrefabs.ContainsKey(path))
-                windowPrefab = _loadedWindowPrefabs[path];
+            if (_loadedWindowPrefabs.TryGetValue(path, out var prefab))
+                windowPrefab = prefab;
             else
             {
                 windowPrefab = Resources.Load<GameObject>(path) ??
@@ -171,14 +178,14 @@ namespace Nuclear.WindowsManager
                 if (!window.DestroyOnClose)
                 {
                     DestroyInputBlockIfNotNeeded(window);
-                    if (!_invisibleWindows.ContainsKey(window.name))
+                    if (!_invisibleWindows.TryGetValue(window.name, out var invisibleWindow))
                         _invisibleWindows.Add(window.name, new List<Window> {window});
                     else
-                        _invisibleWindows[window.name].Add(window);
+                        invisibleWindow.Add(window);
                 }
 
                 _windows.RemoveAt(i);
-                OnWindowClosed.Invoke(window);
+                OnWindowClosed?.Invoke(window);
                 return;
             }
         }

@@ -3,7 +3,7 @@ using System;
 
 namespace Nuclear.WindowsManager
 {
-    public interface IWindowsManager
+    public interface IWindowsManager : IDisposable
     {
         event Action<Window> OnWindowCreated;
         event Action<Window> OnWindowClosed;
