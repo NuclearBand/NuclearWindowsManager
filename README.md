@@ -6,12 +6,12 @@ Unity 2020.1.4 or later (C# 8)
 ## Installation
 You can install via git url by adding this entry in your **manifest.json**
 ```
-"com.nuclearband.windowsmanager": "https://github.com/NuclearBand/NuclearWindowsManager.git#upm"
+"com.nuclearband.windowsmanager": "https://github.com/NuclearBand/NuclearWindowsManager.git"
 ```
 
 ## Documentation (outdated)
-- [Documentation](https://github.com/NuclearBand/NuclearWindowsManager/blob/master/Assets/com.nuclearband.windowsmanager/Documentation/Documentation.en.md)
-- [Документация](https://github.com/NuclearBand/NuclearWindowsManager/blob/master/Assets/com.nuclearband.windowsmanager/Documentation/Documentation.ru.md)
+- [Documentation](https://github.com/NuclearBand/NuclearWindowsManager/blob/master/Documentation~/Documentation.en.md)
+- [Документация](https://github.com/NuclearBand/NuclearWindowsManager/blob/master/Documentation~/Documentation.ru.md)
 
 ## Contributing
 
