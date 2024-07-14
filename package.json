@@ -1,7 +1,7 @@
 {
   "name": "com.nuclearband.windowsmanager",
   "displayName": "Nuclear Windows Manager",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Windows Manager utility",
   "author": {
     "name": "NuclearBand",
@@ -16,7 +16,7 @@
     "nuclearband",
     "nuclear"
   ],
-  "repository": "https://github.com/NuclearBand/NuclearWindowsManager.git#upm",
+  "repository": "https://github.com/NuclearBand/NuclearWindowsManager.git",
   "license": "MIT",
   "samples": [
     {

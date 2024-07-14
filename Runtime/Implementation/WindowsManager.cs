@@ -14,7 +14,7 @@ namespace Nuclear.WindowsManager
         public event Action<Window>? OnWindowClosed;
 
         private readonly ReadOnlyDictionary<string, Func<bool>> _suffixesWithPredicates;
-        private readonly Transform _root ;
+        private readonly Transform _root;
         private readonly GameObject _inputBlockPrefab;
 
         private readonly List<Window> _windows = new();
@@ -40,10 +40,15 @@ namespace Nuclear.WindowsManager
         
         public void Dispose()
         {
-            if (_root != null)
+            if (_root != null && _root.gameObject != null)
             {
-                Object.Destroy(_root);
+                Object.Destroy(_root.gameObject);
             }
+        }
+
+        public Canvas GetRoot()
+        {
+            return _root.GetComponent<Canvas>();
         }
 
         Window IWindowsManager.CreateWindow(string path, Action<Window>? setupWindow)
@@ -61,7 +66,7 @@ namespace Nuclear.WindowsManager
             OnWindowCreated?.Invoke(window);
             return window;
         }
-        
+
         private void InstantiateInputBlockIfNeeded(Window window)
         {
             if (!window.WithInputBlockForBackground) 

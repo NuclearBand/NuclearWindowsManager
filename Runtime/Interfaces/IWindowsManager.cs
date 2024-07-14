@@ -1,5 +1,6 @@
 ﻿#nullable enable
 using System;
+using UnityEngine;
 
 namespace Nuclear.WindowsManager
 {
@@ -10,5 +11,7 @@ namespace Nuclear.WindowsManager
 
         Window CreateWindow(string path, Action<Window>? setupWindow = null);
         void PrefetchWindow(string path);
+
+        Canvas GetRoot();
     }
 }
