@@ -1,11 +1,14 @@
 {
   "name": "com.nuclearband.windowsmanager",
   "displayName": "Nuclear Windows Manager",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Windows Manager utility",
   "author": {
     "name": "NuclearBand",
     "url": "https://github.com/NuclearBand"
+  },
+  "dependencies": {
+    "com.unity.inputsystem": "1.1.1"
   },
   "keywords": [
     "tools",

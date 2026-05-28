@@ -2,6 +2,10 @@
 using System;
 using UnityEngine;
 
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem;
+#endif
+
 namespace NuclearBand
 {
     public class BackButtonEventManager : MonoBehaviour
@@ -10,8 +14,17 @@ namespace NuclearBand
 
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Escape) )
+            if(IsBackButtonPressed())
                 OnBackButtonPressed.Invoke();
+        }
+
+        private static bool IsBackButtonPressed()
+        {
+#if ENABLE_INPUT_SYSTEM
+            return Keyboard.current?.escapeKey.wasPressedThisFrame == true;
+#else
+            return Input.GetKeyDown(KeyCode.Escape);
+#endif
         }
     }
 }

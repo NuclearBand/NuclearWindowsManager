@@ -1,6 +1,8 @@
 {
     "name": "com.nuclearband.windowsmanager",
-    "references": [],
+    "references": [
+        "Unity.InputSystem"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
